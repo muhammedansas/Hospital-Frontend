@@ -46,8 +46,7 @@ const Doctors_List = () => {
         
        </div>
       <div style={{width:"100px",height:"90px",display:"grid",alignItems:"center",justifyContent:"center"}} >
-          <button style={{width:"60px",borderRadius:"5px",height:"30px",border:"0px",backgroundColor:'#3734d5',color:"white",fontWeight:"bold"}} >Edit</button>
-           <button  style={{width:"70px",borderRadius:"5px",height:"30px",border:"0px",backgroundColor:'#eb1919',color:"white",fontWeight:"bold"}} >remove</button>
+          
           </div>
      </div>
     ))}

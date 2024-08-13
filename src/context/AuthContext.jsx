@@ -36,12 +36,7 @@ export const AuthProvider = ({children}) => {
             setUser(jwtDecode(data.access))
             console.log(jwtDecode(data.access));
             localStorage.setItem('authToken',JSON.stringify(data))
-            if(user.is_admin){
-                nav('/admin')
-            }else{
-                nav('/')
-            }
-            
+            nav('/')    
         }else{
             alert("Somthing went wrong")
         }

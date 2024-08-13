@@ -62,6 +62,7 @@ const Profile = () => {
     const editUserApi = async (first_name, last_name, username, email, profile_image) => {
         try {
             const formData = new FormData();
+            console.log(formData)
             formData.append('first_name', first_name);
             formData.append('last_name', last_name);
             formData.append('username', username);
