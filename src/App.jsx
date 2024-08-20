@@ -21,7 +21,6 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/doctors_list' element={<Doctors_List/>}/>
           <Route path='/profile' element={<Profile/>}/>
-
           <Route path='/userlist' element={<UserList/>}/>
         </Routes>
       <Footer/>

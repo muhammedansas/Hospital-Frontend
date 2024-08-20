@@ -2,7 +2,9 @@ import React, { useContext, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 
 const Login = () => {
-  let {loginUser} = useContext(AuthContext)
+  let {loginUser,user} = useContext(AuthContext)
+  console.log(user);
+  
   return (
     <>
       <div>
@@ -18,6 +20,9 @@ const Login = () => {
                   Sign in to your account
                 </h1>
                 <form onSubmit={loginUser} className="space-y-4 md:space-y-6" >
+                  {/* {user.blocked &&
+                    <h1>User is blocked please contact the admin and make sure your a unblocked user</h1>} */}
+                  <h1></h1>
                   <div>
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                     <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />

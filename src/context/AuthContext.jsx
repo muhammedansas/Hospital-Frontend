@@ -12,7 +12,6 @@ export const AuthProvider = ({children}) => {
     
     let [authToken,setAuthToken] = useState(()=> localStorage.getItem('authToken') ? JSON.parse(localStorage.getItem('authToken')):null)
     let [user,setUser] = useState(()=> localStorage.getItem('authToken') ? jwtDecode(localStorage.getItem('authToken')):null)
-    let [loading,setLoading] = useState(true)
     const [doctors,setDoctors] = useState([])
     let nav = useNavigate()
 
@@ -67,26 +66,19 @@ export const AuthProvider = ({children}) => {
         }else{
             logoutUser()
         }
-
-        if(loading){
-            setLoading(false)
-        }
     }
 
     useEffect(()=>{
 
-        if(loading){
-            updateToken()
-        }
 
-        let fourminutes = 1000 * 60 * 4
+        let threeminuts = 1000 * 60 * 3
         let interval = setInterval(()=>{
             if(authToken){
                 updateToken()
             }
-        },fourminutes)
+        },threeminuts)
         return ()=>clearInterval(interval)
-    },[authToken,loading])
+    },[authToken])
     
     let contextData = {
         user:user,
@@ -99,7 +91,7 @@ export const AuthProvider = ({children}) => {
 
     return(
         <AuthContext.Provider value={contextData}>
-            {loading ? null :children}
+            {children}
         </AuthContext.Provider>
     )
 }

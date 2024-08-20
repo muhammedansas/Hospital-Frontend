@@ -33,27 +33,27 @@ const Profile = () => {
         }
     }
 
-    const editDoctorApi = async (username, email, department, hospital, image) => {
+    const editDoctorApi = async (username, email, department, hospital, profile_image) => {
         try {
             const formData = new FormData();
             formData.append('username', username);
             formData.append('email', email);
             formData.append('department', department);
             formData.append('hospital', hospital);
-            if (image) {
-                formData.append('image', image);
+            if (profile_image) {
+                formData.append('profile_image', profile_image);
             }
             const response = await axiosInstance.patch('/api/doctorProfile/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            console.log(formData);
             
             if (response.status === 200) {
-                setDoctorprofile(response.data);
+                getDoctorProfile();
+                nav('/');
             }
-            nav('/');
+            
         } catch (error) {
             console.log(error);
         }
@@ -78,9 +78,10 @@ const Profile = () => {
                 }
             });
             if (response.status === 200) {
-                setUserprofile(response.data);
+                getUserProfile()
+                nav('/');
             }
-            nav('/');
+            
         } catch (error) {
             console.log("error works");
             
@@ -95,8 +96,8 @@ const Profile = () => {
         const email = formData.get('email');
         const department = formData.get('department');
         const hospital = formData.get('hospital');
-        const image = formData.get('image');
-        editDoctorApi(username, email, department, hospital, image);
+        const profile_image = formData.get('image');
+        editDoctorApi(username, email, department, hospital, profile_image);
     }
 
     const submitUser = (e) => {
@@ -120,7 +121,7 @@ const Profile = () => {
                             <div className="w-full flex flex-col items-center">
                                 <img
                                     className="w-1/2 h-auto rounded-3xl shadow-lg mb-4"
-                                    src={`${baseURL + doctorprofile?.image} `}
+                                    src={`${baseURL + doctorprofile?.profile_image} `}
                                     alt="Profile Image"
                                 />
                                 <div className="w-full flex flex-col space-y-4 px-2">
