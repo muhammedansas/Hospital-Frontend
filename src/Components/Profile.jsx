@@ -7,29 +7,42 @@ import { useNavigate } from 'react-router-dom'
 const Profile = () => {
     const [doctorprofile, setDoctorprofile] = useState()
     const [userprofile, setUserprofile] = useState()
-    const editRef = useRef()
     const { user } = useContext(AuthContext)
     const nav = useNavigate()
     
     useEffect(() => {
-        if (user.is_doctor){
+        
+        
+        if (user?.is_doctor){
             getDoctorProfile()
+            console.log(".......................");
         }else{
             getUserProfile()
+            console.log('//////////////////////');
+            
         }
-    }, [])
+    }, [user])
+
+
+    
     
     const getDoctorProfile = async () => {
+        console.log('Fetching doctor profile from: ', `${baseURL}/api/doctorProfile/`);
         let response = await axiosInstance.get('/api/doctorProfile/')
         if (response.status === 200) {
             setDoctorprofile(response.data)
+            console.log(response.data);
+            
         }
     }
 
     const getUserProfile = async () => {
+        console.log('Fetching user profile from: ', `${baseURL}/api/Userprofile/`);
         let response = await axiosInstance.get('/api/Userprofile/')
         if (response.status === 200) {
             setUserprofile(response.data)
+            console.log(response.data);
+            
         }
     }
 
@@ -50,7 +63,7 @@ const Profile = () => {
             });
             
             if (response.status === 200) {
-                getDoctorProfile();
+                setDoctorprofile(response.data)
                 nav('/');
             }
             
@@ -78,7 +91,7 @@ const Profile = () => {
                 }
             });
             if (response.status === 200) {
-                getUserProfile()
+                setUserprofile(response.data)
                 nav('/');
             }
             
@@ -113,8 +126,8 @@ const Profile = () => {
 
     return (
         <>
-            {user.is_doctor ?
-                <form ref={editRef} onSubmit={submitDoctor} className="flex flex-col items-center justify-center px-4 py-2 mt-14 lg:py-0">
+            {user?.is_doctor ?
+                <form onSubmit={submitDoctor} className="flex flex-col items-center justify-center px-4 py-2 mt-14 lg:py-0">
                     <div className="w-full max-w-lg bg-white bg-opacity-50 backdrop-blur-lg rounded-lg shadow dark:border sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:bg-opacity-50 dark:border-gray-700">
                         <div className="p-2 md:p-4 flex flex-col items-center">
                             <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">My Details</h2>
@@ -193,7 +206,7 @@ const Profile = () => {
                     </div>
                 </form>
                 :
-                <form ref={editRef} onSubmit={submitUser} className="flex flex-col items-center justify-center px-4 py-2 mt-14 lg:py-0">
+                <form onSubmit={submitUser} className="flex flex-col items-center justify-center px-4 py-2 mt-14 lg:py-0">
                     <div className="w-full max-w-lg bg-white bg-opacity-50 backdrop-blur-lg rounded-lg shadow dark:border sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:bg-opacity-50 dark:border-gray-700">
                         <div className="p-2 md:p-4 flex flex-col items-center">
                             <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">My Details</h2>

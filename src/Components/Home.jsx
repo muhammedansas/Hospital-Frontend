@@ -1,7 +1,6 @@
 
-
-
 const Home = () => {
+  
   return (
     <>
     {/* <div>
@@ -12,19 +11,10 @@ const Home = () => {
         ))}
       </ul>
     </div> */}
-
+  
     <div style={{width:"100%",height:"100vh"}}>
-      <img style={{width:"100%",zIndex:"-1",height:"100vh",position:"absolute"}} src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2024/05/64be5-top-hospitals-in-indore.jpg?fit=1000%2C500&ssl=1" alt="" />
-      {/* <ul>
-        {doctors.map(doctor => (
-          <li key={doctor.id}>  {doctor.department}</li>
-        ))}
-      </ul> */}
-      <div style={{display:'flex',marginLeft:'50px',alignItems:"center",height:'100vh'}}><h1>fghjk</h1></div>
-      
+      <img style={{width:"100%",zIndex:"-1",height:"100vh",position:"absolute", objectFit:"cover"}} src="https://www.etkho.com/wp-content/uploads/2022/11/importancia_color_en_hospitales_pic03_20221122_etkho_hospital_engineering.jpg" alt="" />
       <div>
-         
-      
     </div>
     </div>
   </>

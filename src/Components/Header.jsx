@@ -1,69 +1,150 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+import {
+  FaUserMd,
+  FaUser,
+  FaSignOutAlt,
+  FaSignInAlt,
+  FaUserPlus,
+  FaHome,
+} from "react-icons/fa";
+
 const Header = () => {
-    const nav = useNavigate();
-    const {user,logoutUser} = useContext(AuthContext)
-    return (
-        <div>
-            
-            <nav className="bg-white dark:bg-gray-900 fi w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a className="items-center space-x-3 rtl:space-x-reverse">
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Doctors mart</span>
-                    </a>
-                    {user &&
-                    <h1 style={{color:"white"}}>Welcome {user?.username}</h1>
-                    }
-                    <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        {!user && 
-                        <button onClick={() => nav('/register')} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>}
-                    <span> | </span>
-                      {user ? (
-                        <button onClick={logoutUser} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
-                      ):(
-                        <button onClick={() => nav('/login')} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
-                      )
-                      }
-                      
-                        
-                        <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-                            <span className="sr-only">Open main menu</span>
-                            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                        <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                            <li>
-                                <a onClick={() => nav('/')} className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
-                            </li>
-                            {user && !user.is_doctor && 
-                            <li>
-                            <a onClick={()=>nav('/doctors_list')} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Doctors List</a>
-                            </li>
-                            }
+  const nav = useNavigate();
+  const { user, logoutUser } = useContext(AuthContext);
 
-
-                            {user && !user.is_admin &&
-                            <li>
-                            <a onClick={() => nav('/profile')} className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Profile</a>
-                            </li>
-                            }
-                            {user && user.is_admin &&
-                            <li>
-                            <a onClick={() => nav('/userlist')} className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">UserList</a>
-                            </li>
-                            }
-                            
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+  return (
+    <header className="bg-white text-white shadow-lg fixed w-full z-20 top-0 left-0">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
+        <div className="flex-1 flex items-center justify-start">
+          <span className="text-3xl font-bold text-black">HealthCare+</span>
         </div>
-    );
+        <div className="flex-1 flex justify-center">
+        <button
+    onClick={() => nav('/')}
+    className="relative flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold rounded-lg overflow-hidden group transition-all duration-300 ease-in-out"
+>
+    <div className="absolute inset-0 bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 transition-transform duration-500 ease-in-out group-hover:translate-x-0 translate-x-full pointer-events-none z-0"></div>
+    <FaHome className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white" />
+    <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">Home</span>
+    </button>
+
+        </div>
+        <div className="flex-1 flex items-center justify-end space-x-4">
+          {!user && (
+            <>
+              <button
+                onClick={() => nav("/login")}
+                className="relative flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold rounded-lg overflow-hidden group transition-all duration-300 ease-in-out"
+              >
+                <div className="absolute inset-0 bg-blue-600 transition-transform duration-500 ease-in-out group-hover:translate-x-0 translate-x-full pointer-events-none z-0"></div>
+                <FaSignInAlt className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white" />
+                <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Login
+                </span>
+              </button>
+
+              <button
+                onClick={() => nav("/register")}
+                className="relative flex items-center space-x-2 px-4 py-2 text-blue-600 font-semibold rounded-lg overflow-hidden group transition-all duration-300 ease-in-out"
+              >
+                <div className="absolute inset-0 bg-blue-600 transition-transform duration-500 ease-in-out group-hover:translate-x-0 translate-x-full pointer-events-none z-0"></div>
+                <FaUserPlus className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white" />
+                <span className="relative z-10 transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Register
+                </span>
+              </button>
+            </>
+          )}
+          {user && !user.is_admin && (
+            <>
+              <button
+                onClick={() => nav("/profile")}
+                className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 transition-all duration-300 px-4 py-2 rounded-lg"
+              >
+                <FaUser />
+                <span>Profile</span>
+              </button>
+            </>
+          )}
+
+          {user && (
+            <button
+              onClick={logoutUser}
+              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 transition-all duration-300 px-4 py-2 rounded-lg"
+            >
+              <FaSignOutAlt />
+              <span>Logout</span>
+            </button>
+          )}
+
+          <button
+            className="inline-flex items-center p-2 text-gray-200 hover:bg-gray-600 hover:text-white rounded-lg md:hidden"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+            data-collapse-toggle="navbar-sticky"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div
+          className="hidden md:flex items-center justify-between w-full md:w-auto"
+          id="navbar-sticky"
+        >
+          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+            {user && !user.is_doctor && (
+              <li>
+                <a
+                  onClick={() => nav("/doctors_list")}
+                  className="flex items-center space-x-2 py-2 px-3 text-gray-300 hover:text-white transition-all duration-300"
+                >
+                  <FaUserMd />
+                  <span>Doctors List</span>
+                </a>
+              </li>
+            )}
+            {user && !user.is_admin && (
+              <li>
+                <a
+                  onClick={() => nav("/profile")}
+                  className="flex items-center space-x-2 py-2 px-3 text-gray-300 hover:text-white transition-all duration-300"
+                >
+                  <FaUser />
+                  <span>Profile</span>
+                </a>
+              </li>
+            )}
+            {user && user.is_admin && (
+              <li>
+                <a
+                  onClick={() => nav("/userlist")}
+                  className="flex items-center space-x-2 py-2 px-3 text-gray-300 hover:text-white transition-all duration-300"
+                >
+                  <FaUserMd />
+                  <span>User List</span>
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

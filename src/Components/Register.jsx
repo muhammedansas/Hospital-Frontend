@@ -41,7 +41,9 @@ const Register = () => {
   }
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4">
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4"
+    style={{backgroundImage:"url('https://e0.pxfuel.com/wallpapers/374/343/desktop-wallpaper-abstract-futuristic-telecom.jpg')"}}
+    >
       <div className="w-full max-w-md bg-white rounded-lg shadow dark:bg-gray-800 dark:border dark:border-gray-700 p-8 space-y-6">
         <h1 className="text-xl font-bold leading-tight text-gray-900 dark:text-white md:text-2xl">
           Create an account
@@ -134,7 +136,7 @@ const Register = () => {
             Create an account
           </button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-            Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+            Already have an account? <a onClick={()=> nav("/login")} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
           </p>
         </form>
       </div>
