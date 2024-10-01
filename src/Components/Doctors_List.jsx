@@ -18,7 +18,7 @@ const Doctors_List = () => {
       let response = await axiosInstance.get('/api/doctorsList/');
       if (response.status === 200) {
         setDoctors(response.data);
-      }
+      } 
     } catch (error) {
       console.error("Error fetching doctors", error);
     }
